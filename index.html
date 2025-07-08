@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cours HTML & CSS + QCM</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f7fa;
+      max-width: 800px;
+      margin: auto;
+      color: #333;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .section {
+      display: none;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .active {
+      display: block;
+    }
+    .btn {
+      padding: 12px 20px;
+      margin: 8px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 16px;
+    }
+    .btn:hover {
+      background: #2980b9;
+    }
+    .question {
+      margin-bottom: 20px;
+      border-left: 5px solid #ccc;
+      padding-left: 10px;
+    }
+    .correct {
+      background-color: #d4edda;
+      border-left: 5px solid #28a745;
+    }
+    .incorrect {
+      background-color: #f8d7da;
+      border-left: 5px solid #dc3545;
+    }
+    label {
+      display: block;
+      margin: 5px 0;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      .btn {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Apprendre les bases HTML & CSS en 5 jours</h1>
+  <div style="text-align:center">
+    <button class="btn" onclick="showSection('html')">Cours HTML</button>
+    <button class="btn" onclick="showSection('css')">Cours CSS</button>
+    <button class="btn" onclick="showSection('quiz')">QCM Final</button>
+  </div>
+
+  <div id="html" class="section">
+    <h2>Cours HTML</h2>
+    <p>1. HTML signifie HyperText Markup Language. Il sert à structurer une page web.</p>
+    <p>2. Un document HTML contient les balises &lt;html&gt;, &lt;head&gt;, &lt;body&gt;.</p>
+    <p>3. &lt;p&gt; représente un paragraphe. &lt;h1&gt; à &lt;h6&gt; sont les titres.</p>
+    <p>4. &lt;a href=""&gt; crée un lien. &lt;img src=""&gt; affiche une image.</p>
+    <p>5. &lt;ul&gt; crée une liste à puces, &lt;ol&gt; une liste numérotée.</p>
+    <p>6. &lt;table&gt;, &lt;tr&gt;, &lt;td&gt; servent aux tableaux HTML.</p>
+    <p>7. Les formulaires utilisent &lt;form&gt;, &lt;input&gt;, &lt;textarea&gt;.</p>
+    <p>8. Les attributs comme id, class, src, href définissent les propriétés.</p>
+    <p>9. HTML5 introduit des balises sémantiques comme &lt;header&gt;, &lt;section&gt;, &lt;footer&gt;.</p>
+    <p>10. Les commentaires en HTML s’écrivent : &lt;!-- commentaire --&gt;.</p>
+  </div>
+
+  <div id="css" class="section">
+    <h2>Cours CSS</h2>
+    <p>1. CSS signifie Cascading Style Sheets. Il permet de styliser les pages HTML.</p>
+    <p>2. Il agit sur les éléments HTML via des sélecteurs.</p>
+    <p>3. Les couleurs s’appliquent avec `color` ou `background-color`.</p>
+    <p>4. Le texte est géré avec `font-size`, `font-family`, `text-align`.</p>
+    <p>5. `margin`, `padding`, `border` forment le “box model”.</p>
+    <p>6. Les positions : `static`, `relative`, `absolute`, `fixed`, `sticky`.</p>
+    <p>7. Les unités courantes : `px`, `%`, `em`, `rem`.</p>
+    <p>8. Les coins arrondis : `border-radius`.</p>
+    <p>9. Les effets : `transition`, `hover`, `opacity`, `animation`.</p>
+    <p>10. Le responsive design utilise `@media` pour s’adapter aux écrans.</p>
+  </div>
+
+  <div id="quiz" class="section">
+    <h2>QCM HTML & CSS</h2>
+    <div id="quiz-container"></div>
+    <div style="text-align:center">
+      <button class="btn" id="nextBtn" onclick="nextQuestions()">Afficher la suite</button>
+      <button class="btn" onclick="corrigerQuestions()">Corriger</button>
+      <button class="btn" onclick="restartQuiz()">Recommencer</button>
+    </div>
+  </div>
+
+  <script>
+    const sections = ["html", "css", "quiz"];
+    function showSection(id) {
+      sections.forEach(sec => document.getElementById(sec).classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    const questions = [
+      { q: "Que signifie HTML ?", o: ["Hyper Trainer Markup Language", "HyperText Markup Language", "Hyperlinking Text Mark Language", "None"], a: 1 },
+      { q: "Quelle balise est utilisée pour créer un lien ?", o: ["<link>", "<a>", "<href>", "<url>"], a: 1 },
+      { q: "Quelle balise est utilisée pour afficher une image ?", o: ["<img>", "<image>", "<pic>", "<src>"], a: 0 },
+      { q: "Quelle balise représente un paragraphe ?", o: ["<p>", "<para>", "<text>", "<par>"], a: 0 },
+      { q: "Comment créer une liste à puces ?", o: ["<ol>", "<ul>", "<li>", "<list>"], a: 1 },
+      { q: "Quelle balise contient le contenu principal de la page ?", o: ["<body>", "<head>", "<main>", "<section>"], a: 0 },
+      { q: "Quel attribut est utilisé pour définir l’adresse d’un lien ?", o: ["href", "src", "link", "address"], a: 0 },
+      { q: "Quelle balise est utilisée pour les titres les plus grands ?", o: ["<h1>", "<h6>", "<title>", "<head>"], a: 0 },
+      { q: "Quelle balise HTML5 est sémantique pour le pied de page ?", o: ["<footer>", "<bottom>", "<foot>", "<end>"], a: 0 },
+      { q: "Quel élément HTML est utilisé pour insérer un formulaire ?", o: ["<form>", "<input>", "<submit>", "<textarea>"], a: 0 },
+      { q: "Quel attribut donne un identifiant unique à un élément ?", o: ["class", "id", "name", "ref"], a: 1 },
+      { q: "Comment insérer un commentaire en HTML ?", o: ["<!-- commentaire -->", "// commentaire", "/* commentaire */", "# commentaire"], a: 0 },
+      { q: "Quelle balise permet d’afficher une citation ?", o: ["<quote>", "<q>", "<cite>", "<citation>"], a: 1 },
+      { q: "Quelle balise HTML utilise-t-on pour les sous-titres ?", o: ["<h2>", "<subtitle>", "<head>", "<sub>"], a: 0 },
+      { q: "Quel est l’élément racine d’un document HTML ?", o: ["<html>", "<head>", "<body>", "<document>"], a: 0 },
+      { q: "Que signifie CSS ?", o: ["Cascading Style Sheets", "Computer Style Sheets", "Creative Style System", "Colorful Style Sheets"], a: 0 },
+      { q: "Quelle propriété CSS change la couleur du texte ?", o: ["font-color", "text-color", "color", "background-color"], a: 2 },
+      { q: "Comment sélectionner une classe en CSS ?", o: ["#maClasse", ".maClasse", "*maClasse", "maClasse"], a: 1 },
+      { q: "Quelle propriété CSS définit la taille du texte ?", o: ["font-size", "text-size", "font-style", "text-style"], a: 0 },
+      { q: "Quelle propriété CSS ajoute une marge autour d’un élément ?", o: ["padding", "border", "margin", "space"], a: 2 },
+      { q: "Quelle propriété CSS définit la police de caractères ?", o: ["font-family", "font-style", "font-weight", "font-size"], a: 0 },
+      { q: "Quelle valeur CSS permet de cacher un élément ?", o: ["visible", "hidden", "none", "invisible"], a: 2 },
+      { q: "Quelle propriété CSS contrôle l’alignement du texte ?", o: ["text-align", "align-text", "text-position", "align"], a: 0 },
+      { q: "Quelle propriété CSS est utilisée pour les coins arrondis ?", o: ["border-round", "border-radius", "corner-radius", "round-corner"], a: 1 },
+      { q: "Quelle propriété CSS change l’arrière-plan ?", o: ["background-color", "bg-color", "color", "background"], a: 0 },
+      { q: "Quelle propriété CSS contrôle l’opacité ?", o: ["opacity", "transparency", "alpha", "visibility"], a: 0 },
+      { q: "Quelle propriété CSS permet de faire une transition douce ?", o: ["animation", "transition", "transform", "effect"], a: 1 },
+      { q: "Quelle unité CSS est relative à la taille de la police ?", o: ["px", "%", "em", "pt"], a: 2 },
+      { q: "Quelle propriété CSS place un élément en position absolue ?", o: ["position: static", "position: relative", "position: absolute", "position: fixed"], a: 2 },
+      { q: "Quelle règle CSS rend un site responsive ?", o: ["@media", "@responsive", "@screen", "@resize"], a: 0 }
+    ];
+
+    let current = 0;
+    const nbParPage = 5;
+
+    function nextQuestions() {
+      const container = document.getElementById("quiz-container");
+      const nextBtn = document.getElementById("nextBtn");
+      container.innerHTML = "";
+
+      if (current >= questions.length) {
+        nextBtn.disabled = true;
+        nextBtn.innerText = "Fin du quiz";
+        return;
+      }
+
+      for (let i = current; i < current + nbParPage && i < questions.length; i++) {
+        const q = questions[i];
+        let html = `<div class='question' id='question${i}'><p><strong>${i + 1}. ${escapeHtml(q.q)}</strong></p>`;
+        q.o.forEach((opt, j) => {
+          html += `<label><input type='radio' name='q${i}' value='${j}'> ${escapeHtml(opt)}</label>`;
+        });
+        html += `</div>`;
+        container.innerHTML += html;
+      }
+      current += nbParPage;
+    }
+
+    function corrigerQuestions() {
+      for (let i = current - nbParPage; i < current; i++) {
+        const radios = document.getElementsByName("q" + i);
+        let userAnswer = -1;
+        for (const radio of radios) {
+          if (radio.checked) userAnswer = parseInt(radio.value);
+        }
+        const container = document.getElementById("question" + i);
+        container.classList.remove("correct", "incorrect");
+        if (userAnswer === questions[i].a) {
+          container.classList.add("correct");
+        } else {
+          container.classList.add("incorrect");
+        }
+      }
+    }
+
+    function restartQuiz() {
+      current = 0;
+      document.getElementById("quiz-container").innerHTML = "";
+      document.getElementById("nextBtn").disabled = false;
+      document.getElementById("nextBtn").innerText = "Afficher la suite";
+      nextQuestions();
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    showSection('html');
+  </script>
+  ..<footer style="text-align:center; margin-top:40px; font-size:14px; color:#777;">
+  © 2025 Landry Kendrick. Tous droits réservés.
+</footer>
+</body>
+</html>
